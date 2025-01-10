@@ -1,0 +1,37 @@
+{
+  "name": "ctg-bot",
+  "version": "1.0.0",
+  "description": "Chimera Tactical Group Bot",
+  "main": "index.js",
+  "bin": {
+    "ctg-bot": "index.js"
+  },
+  "private": true,
+  "scripts": {
+    "lint": "eslint . --ext js,md,vue",
+    "start": "node index.js"
+  },
+  "repository": "",
+  "keywords": [
+    "discord",
+    "bot",
+    "guide",
+    "tutorial",
+    "javascript",
+    "node"
+  ],
+  "dependencies": {
+    "@discord-message-components/vue": "^0.2.1",
+    "discord.js": "^14.16.3",
+    "djs-commander": "^0.0.50"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.13.0",
+    "eslint": "^9.13.0",
+    "globals": "^15.11.0",
+    "prettier": "^3.3.3",
+    "rcedit": "^4.0.1"
+  },
+  "author": "CTG",
+  "license": "ISC"
+}
