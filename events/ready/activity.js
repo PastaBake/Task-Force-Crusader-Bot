@@ -8,5 +8,5 @@ const { ActivityType, inlineCode } = require('discord.js');
 const { guild, attendancechannelid } = require('../../config');
 
 module.exports = async (client) => {
-    client.user.setActivity(`Chimera Tactical Group`, { type: ActivityType.Custom });
+    client.user.setActivity(`For 502nd PIR Events`, { type: ActivityType.Watching });
 };

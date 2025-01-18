@@ -12,7 +12,7 @@ module.exports = {
       const interactionguild = interaction.guild;
       if (!interactionguild) {
         await interaction.reply(
-          { content: "You can only use this command within https://discord.gg/chimeratacticalgroup ", ephemeral: true }
+          { content: "You can only use this command within https://discord.gg/502ndPIRa3", ephemeral: true }
         );
         return;
       };
@@ -38,7 +38,7 @@ module.exports = {
       //-- Create Modal
       const event = new ModalBuilder({
         customId: `event-${interaction.user.id}`,
-        title: 'CTG Event Creator',
+        title: 'Event Setup',
       });
   
       const name = new TextInputBuilder({

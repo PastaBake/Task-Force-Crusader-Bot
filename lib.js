@@ -62,7 +62,7 @@ async function handleGoingButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "Chimera Tactical Group"));
+    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
@@ -193,7 +193,7 @@ async function handleNotGoingButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "Chimera Tactical Group"));
+    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
     
     //-- Prepare the values for the embed fields
     const acceptButton = {
@@ -324,7 +324,7 @@ async function handleMaybeButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "Chimera Tactical Group"));
+    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
     
     const acceptButton = {
       type: 2,
@@ -641,7 +641,7 @@ async function handleEventCreation(interaction) {
 
     //--- Post in the event channel
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "Chimera Tactical Group"));
+    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
     
     const userid = interaction.user.id;
     const embedContents = {
@@ -649,7 +649,7 @@ async function handleEventCreation(interaction) {
       description: `${descriptionValue}`,
       color: Colours.GREY,
       thumbnail: {
-        url: 'https://imgur.com/ZyDm7fl.png',
+        url: 'https://gyazo.com/62bab8f20b49c597bd785750eb1c73aa.png',
       },
       fields: [
         { name: "Created", value: `By <@${userid}>`, inline: true },
@@ -712,14 +712,10 @@ async function handleEventCreation(interaction) {
     //--- Ping everyone
     var pingcontent = "";
     if (pingEveryone.toLowerCase() === "yes") {
-      if (nameValue === "Basic Combat Training") {
-        pingcontent = "<@&1292127087871787018>";
+      if (roleidtopingValue === "") {
+        pingcontent = "@everyone"
       } else {
-        if (roleidtopingValue === "") {
-          pingcontent = "@everyone"
-        } else {
-          pingcontent = `<@&${roleidtopingValue}>`
-        }
+        pingcontent = `<@&${roleidtopingValue}>`
       }
     }
   

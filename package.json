@@ -1,10 +1,10 @@
 {
-  "name": "ctg-bot",
+  "name": "502nd-events-bot",
   "version": "1.0.0",
-  "description": "Chimera Tactical Group Bot",
+  "description": "502nd PIR Eents Bot",
   "main": "index.js",
   "bin": {
-    "ctg-bot": "index.js"
+    "502nd-events-bot": "index.js"
   },
   "private": true,
   "scripts": {
@@ -32,6 +32,6 @@
     "prettier": "^3.3.3",
     "rcedit": "^4.0.1"
   },
-  "author": "CTG",
+  "author": "502nd PIR",
   "license": "ISC"
 }
