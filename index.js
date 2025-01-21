@@ -4,7 +4,7 @@
  *  copyright © 2024, all rights reserved
  */
 
-const { Events, REST, Client, GatewayIntentBits, Collection } = require('discord.js');
+const { Routes, REST, Client, Events, GatewayIntentBits, Collection } = require('discord.js');
 // const { createConnection } = require('mysql');
 const { CommandHandler } = require('djs-commander');
 const { handleEventEdited, handleEditButton, handleGoingButton, handleNotGoingButton, handleDeleteEventButton, handleEventCreation, handleMaybeButton } = require('./lib');
