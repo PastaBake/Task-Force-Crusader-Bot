@@ -32,13 +32,6 @@ client.attenders = new Map();
 client.neglectors = new Map();
 client.maybes = new Map();
 
-//--- Connect to DB
-// const db = createConnection(config.mysql);
-// db.connect(err => {
-//   if (err) return console.log(err);
-//   console.log(`Database connection has been successful!`);
-// });
-
 //-- Interact
 // Has to be here otherwise the event never gets added if
 // its done for the same way as the other events

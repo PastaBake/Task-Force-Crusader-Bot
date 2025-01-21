@@ -630,7 +630,8 @@ async function handleEventCreation(interaction) {
     const timeValue = interaction.fields.getTextInputValue("time");
     const roleidtopingValue = interaction.fields.getTextInputValue("roleidtoping");
     const pingEveryone = interaction.fields.getTextInputValue("everyone");
-  
+    const discordGuild = interaction.guild;
+
     //--- Give the user a resonse
     const embed = {
       title: "Event Created",
@@ -640,7 +641,7 @@ async function handleEventCreation(interaction) {
     await interaction.reply({ embeds: [embed], ephemeral: true });
 
     //--- Post in the event channel
-    const members = await interaction.guild.members.fetch();
+    const members = await discordGuild.members.fetch();
     const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
     
     const userid = interaction.user.id;
@@ -717,7 +718,32 @@ async function handleEventCreation(interaction) {
       } else {
         pingcontent = `<@&${roleidtopingValue}>`
       }
-    }
+    };
+
+    const date = new Date(Number(timeValue) * 1000);
+    if (isNaN(date)) {
+      const embed = {
+        title: "Error",
+        description: `There was an error with your timestamp!`,
+        color: Colours.RED, // Green color for success
+      };
+      
+      await interaction.reply({ embeds: [embed], ephemeral: true });
+      return
+    };
+
+    //--- Create an Event
+    discordGuild.scheduledEvents.create({
+      name: `${nameValue}`,
+      scheduledStartTime: date,
+      scheduledEndTime: new Date(date + 2 * 60 * 60 * 1000),
+      privacyLevel: 2,
+      entityType: 3,
+      entityMetadata: {
+        location: 'https://discord.gg/502ndPIRa3',
+      },
+      description: `${descriptionValue}`
+    });
   
     //--- Send message and then once sent run a timer for that message
     await channel.send({ content: pingcontent, embeds: [embedContents], components: [actionRow] }).then((message) => {
@@ -737,7 +763,7 @@ async function handleEventCreation(interaction) {
           console.log('Embed is no longer valid. Cancelling interval.');
           clearInterval(intervalId);
           return;
-        }
+        };
   
         // Prepare the list of attenders
         let attendersList = '';
