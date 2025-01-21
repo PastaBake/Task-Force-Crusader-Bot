@@ -8,5 +8,5 @@ const { ActivityType, inlineCode } = require('discord.js');
 const { guild, attendancechannelid } = require('../../config');
 
 module.exports = async (client) => {
-    client.user.setActivity(`For 502nd PIR Events`, { type: ActivityType.Watching });
+    client.user.setActivity(`For New Events`, { type: ActivityType.Watching });
 };
