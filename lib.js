@@ -576,10 +576,10 @@ async function handleDeleteEventButton(interaction) {
     const member = await interaction.guild.members.fetch(interaction.user.id);
     const client = interaction.client;
     const { attenders, neglectors, maybes } = client;
-    const { attendancechannelid } = require("./config");
+    const { guild, attendancechannelid } = require("./config");
 
     //-- Clone the first embed for modification
-    if (!hasRole(member, "Headquarters and Headquarters Battalion")) {
+    if (!hasRole(member, "Company HQ")) {
       const embed = {
         title: "Error",
         description: "You don't have the necessory permissions to `delete` events.",
@@ -593,6 +593,25 @@ async function handleDeleteEventButton(interaction) {
     const channel = await client.channels.fetch(attendancechannelid);
     const fetchedMessages = await channel.messages.fetch({ limit: 100 });
     await channel.bulkDelete(fetchedMessages, true);
+
+    const discordGuild = client.guilds.cache.get(guild);
+    discordGuild.scheduledEvents.fetch()
+        .then(events => {
+        if (events.size === 0) {
+            console.log('No events found.');
+            return;
+        };
+
+        console.log(`Found ${events.size} event(s). Deleting them...`);
+
+        // Iterate through the events and delete them
+        events.forEach(event => {
+            discordGuild.scheduledEvents.delete(event.id)
+            .then(() => console.log(`Deleted event: ${event.name} (${event.id})`))
+            .catch(error => console.error(`Failed to delete event: ${event.name} (${event.id})`, error));
+        });
+    }).catch(error => console.error('Failed to fetch events:', error));
+
     console.log('All events have been deleted');
   
     attenders.clear();
@@ -628,6 +647,20 @@ async function handleEventCreation(interaction) {
     const nameValue = interaction.fields.getTextInputValue("name");
     const descriptionValue = interaction.fields.getTextInputValue("description");
     const timeValue = interaction.fields.getTextInputValue("time");
+
+    //--- Make timeValue into a date object
+    const unixTimestamp = parseInt(timeValue, 10);
+    if (isNaN(unixTimestamp)) {
+      const embed = {
+        title: "Error",
+        description: `There was an error with your timestamp!`,
+        color: Colours.RED,
+      };
+      
+      await interaction.reply({ embeds: [embed], ephemeral: true });
+      return
+    };
+
     const roleidtopingValue = interaction.fields.getTextInputValue("roleidtoping");
     const pingEveryone = interaction.fields.getTextInputValue("everyone");
     const discordGuild = interaction.guild;
@@ -719,24 +752,15 @@ async function handleEventCreation(interaction) {
         pingcontent = `<@&${roleidtopingValue}>`
       }
     };
-
-    const date = new Date(Number(timeValue) * 1000);
-    if (isNaN(date)) {
-      const embed = {
-        title: "Error",
-        description: `There was an error with your timestamp!`,
-        color: Colours.RED, // Green color for success
-      };
-      
-      await interaction.reply({ embeds: [embed], ephemeral: true });
-      return
-    };
-
+    
+    const scheduledStartTime = new Date(unixTimestamp * 1000);
+    const scheduledEndTime = new Date((unixTimestamp + 7200) * 1000);
+    
     //--- Create an Event
     discordGuild.scheduledEvents.create({
       name: `${nameValue}`,
-      scheduledStartTime: date,
-      scheduledEndTime: new Date(date + 2 * 60 * 60 * 1000),
+      scheduledStartTime: scheduledStartTime,
+      scheduledEndTime: scheduledEndTime,
       privacyLevel: 2,
       entityType: 3,
       entityMetadata: {
