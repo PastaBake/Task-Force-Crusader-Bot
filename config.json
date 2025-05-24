@@ -1,12 +1,6 @@
 {
-    "appid": "1327079816675197018",
-    "token": "MTMyNzA3OTgxNjY3NTE5NzAxOA.GwHznr.ECkA7CqXdvGO9rGXA4i6IU6v8uzyAR3MCZV_dw",
-    "guild": "1276218849443708999",
-    "attendancechannelid": "1280525498086326376",
-    "mysql": {
-        "host": "localhost",
-        "user": "root",
-        "password": "",
-        "database": "502nd_events_bot"
-    }
+    "appid": "",
+    "token": "",
+    "guild": "",
+    "attendancechannelid": ""
 }

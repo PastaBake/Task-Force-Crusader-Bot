@@ -6,3 +6,4 @@ node_modules
 eslint.config.mjs
 .eslintrc.json
 .eslintrc.json.bak
+.config.json

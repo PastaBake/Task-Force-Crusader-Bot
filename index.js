@@ -5,16 +5,10 @@
  */
 
 const { Routes, REST, Client, Events, GatewayIntentBits, Collection } = require('discord.js');
-// const { createConnection } = require('mysql');
 const { CommandHandler } = require('djs-commander');
 const { handleEventEdited, handleEditButton, handleGoingButton, handleNotGoingButton, handleDeleteEventButton, handleEventCreation, handleMaybeButton } = require('./lib');
 const { guild, token, appid } = require('./config');
 const path = require('node:path');
-// const rest = new REST().setToken(token);
-
-// rest.put(Routes.applicationCommands(appid), { body: [] })
-// 	.then(() => console.log('Successfully deleted all application commands.'))
-// 	.catch(console.error);
 
 let client = new Client({
   intents: [
