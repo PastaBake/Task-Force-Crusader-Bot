@@ -62,7 +62,7 @@ async function handleGoingButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
+    const currentmembers = members.filter(member => !member.user.bot);
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
@@ -193,7 +193,7 @@ async function handleNotGoingButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
+    const currentmembers = members.filter(member => !member.user.bot);
     
     //-- Prepare the values for the embed fields
     const acceptButton = {
@@ -324,7 +324,7 @@ async function handleMaybeButton(interaction) {
     
     //-- Fetch current members from the interaction's guild
     const members = await interaction.guild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
+    const currentmembers = members.filter(member => !member.user.bot);
     
     const acceptButton = {
       type: 2,
@@ -675,7 +675,7 @@ async function handleEventCreation(interaction) {
 
     //--- Post in the event channel
     const members = await discordGuild.members.fetch();
-    const currentmembers = members.filter(member => !member.user.bot && hasRole(member, "502nd PIR"));
+    const currentmembers = members.filter(member => !member.user.bot);
     
     const userid = interaction.user.id;
     const embedContents = {
@@ -683,7 +683,7 @@ async function handleEventCreation(interaction) {
       description: `${descriptionValue}`,
       color: Colours.GREY,
       thumbnail: {
-        url: 'https://gyazo.com/62bab8f20b49c597bd785750eb1c73aa.png',
+        url: 'https://i.imgur.com/bwRSo19.png',
       },
       fields: [
         { name: "Created", value: `By <@${userid}>`, inline: true },
@@ -764,7 +764,7 @@ async function handleEventCreation(interaction) {
       privacyLevel: 2,
       entityType: 3,
       entityMetadata: {
-        location: 'https://discord.gg/502ndPIRa3',
+        location: 'https://discord.gg/Xmz8UJkX94',
       },
       description: `${descriptionValue}`
     });

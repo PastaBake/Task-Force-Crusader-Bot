@@ -12,7 +12,7 @@ module.exports = {
       const interactionguild = interaction.guild;
       if (!interactionguild) {
         await interaction.reply(
-          { content: "You can only use this command within https://discord.gg/502ndPIRa3", ephemeral: true }
+          { content: "You can only use this command within https://discord.gg/Xmz8UJkX94", ephemeral: true }
         );
         return;
       };
@@ -48,7 +48,7 @@ module.exports = {
         required: true,
         maxLength: 35,
         minLength: 4,
-        placeholder: "Persistant Server Gaming",
+        placeholder: "Star Citizen Gaming",
       });
 
       const description = new TextInputBuilder({
@@ -58,7 +58,7 @@ module.exports = {
         required: false,
         maxLength: 4000,
         minLength: 100,
-        placeholder: "Let's hop on the persistant server!",
+        placeholder: "Let's hop on Star Citizen",
       });
       
       const time = new TextInputBuilder({

@@ -1,4 +1,4 @@
 @echo off
-cd /d "C:\Users\Administrator\Documents\502nd-events-bot"
+cd /d "PUT THE PATH TO WHERE YOU RUN IT"
 node index.js
 pause

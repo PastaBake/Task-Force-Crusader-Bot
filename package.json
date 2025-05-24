@@ -1,10 +1,10 @@
 {
-  "name": "502nd-events-bot",
+  "name": "task-force-crusader-bot",
   "version": "1.0.0",
-  "description": "502nd PIR Eents Bot",
+  "description": "Task Force Crusader Bot made by Pasta",
   "main": "index.js",
   "bin": {
-    "502nd-events-bot": "index.js"
+    "Task Force Crusader-events-bot": "index.js"
   },
   "private": true,
   "scripts": {
@@ -32,6 +32,6 @@
     "prettier": "^3.3.3",
     "rcedit": "^4.0.1"
   },
-  "author": "502nd PIR",
+  "author": "Task Force Crusader",
   "license": "ISC"
 }
