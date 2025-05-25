@@ -4,7 +4,7 @@
  *  copyright © 2024, all rights reserved
  */
 
-const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle } = require('discord.js');
+const { ActionRowBuilder, ModalBuilder, TextInputBuilder, TextInputStyle, MessageFlags } = require('discord.js');
 const { Colours, hasRole } = require('../lib');
 
 module.exports = {
@@ -12,7 +12,7 @@ module.exports = {
       const interactionguild = interaction.guild;
       if (!interactionguild) {
         await interaction.reply(
-          { content: "You can only use this command within https://discord.gg/Xmz8UJkX94", ephemeral: true }
+          { content: "You can only use this command within https://discord.gg/Xmz8UJkX94", flags: [MessageFlags.Ephemeral] }
         );
         return;
       };
@@ -30,7 +30,7 @@ module.exports = {
           color: Colours.RED, // Green color for success
         };
         
-        await interaction.reply({ embeds: [embed], ephemeral: true });
+        await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
         console.log(`${interaction.user.globalName} doesn't have permission to run /event.`);
         return;
       }
@@ -58,7 +58,7 @@ module.exports = {
         required: false,
         maxLength: 4000,
         minLength: 100,
-        placeholder: "Let's hop on Star Citizen",
+        placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed posuere massa, vel luctus nullam.",
       });
       
       const time = new TextInputBuilder({
@@ -74,12 +74,12 @@ module.exports = {
         label: "Role ID to ping",
         style: TextInputStyle.Short,
         required: false,
-        placeholder: "@everyone is used if none is provided",
+        placeholder: "if the below is 'yes' and this box is empty then @here us used",
       });
 
       const ping = new TextInputBuilder({
         customId: "everyone",
-        label: "Ping everyone?",
+        label: "Ping here?",
         style: TextInputStyle.Short,
         required: true,
         placeholder: "'Yes' or 'No'",

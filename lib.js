@@ -4,7 +4,7 @@
  *  copyright © 2024, all rights reserved
  */
 
-const { ActionRowBuilder, TextInputBuilder, TextInputStyle, ModalBuilder, EmbedBuilder, ButtonStyle } = require('discord.js');
+const { ActionRowBuilder, TextInputBuilder, TextInputStyle, ModalBuilder, EmbedBuilder, ButtonStyle, MessageFlags, scheduledEvents } = require('discord.js');
 
 const Colours = {
   YELLOW: 0xf1b937,
@@ -52,7 +52,7 @@ async function handleGoingButton(interaction) {
           color: Colours.RED,
       };
     
-      await interaction.followUp({ embeds: [embed], ephemeral: true });
+      await interaction.followUp({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       console.log(`${interaction.user.globalName} couldn't find the event embed`);
       return; // Exit early to prevent further processing
     }
@@ -66,39 +66,39 @@ async function handleGoingButton(interaction) {
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👍",
+      emoji: { name: "👍" },
       label: "Attending",
       custom_id: "attender"
     };
-
+    
     const denyButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👎",
+      emoji: { name: "👎" },
       label: "Not Attending",
       custom_id: "neglector"
     };
-
+    
     const maybeButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "❓",
+      emoji: { name: "❓" },
       label: "Maybe Attending",
       custom_id: "maybe"
     };
-
+    
     const editButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "✏️",
+      emoji: { name: "✏️" },
       label: "Edit",
       custom_id: "edit"
     };
-
+    
     const deleteButton = {
       type: 2,
       style: ButtonStyle.Danger,
-      emoji: "🗑️",
+      emoji: { name: "🗑️" },
       label: `Cancel`,
       custom_id: "deleteevent"
     };
@@ -183,7 +183,7 @@ async function handleNotGoingButton(interaction) {
         color: Colours.RED,
       };
     
-      await interaction.followUp({ embeds: [embed], ephemeral: true });
+      await interaction.followUp({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       console.log(`${interaction.user.globalName} couldn't find the event embed`);
       return; // Exit early to prevent further processing
     }
@@ -199,39 +199,39 @@ async function handleNotGoingButton(interaction) {
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👍",
+      emoji: { name: "👍" },
       label: "Attending",
       custom_id: "attender"
     };
-
+    
     const denyButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👎",
+      emoji: { name: "👎" },
       label: "Not Attending",
       custom_id: "neglector"
     };
-
+    
     const maybeButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "❓",
+      emoji: { name: "❓" },
       label: "Maybe Attending",
       custom_id: "maybe"
     };
-
+    
     const editButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "✏️",
+      emoji: { name: "✏️" },
       label: "Edit",
       custom_id: "edit"
     };
-
+    
     const deleteButton = {
       type: 2,
       style: ButtonStyle.Danger,
-      emoji: "🗑️",
+      emoji: { name: "🗑️" },
       label: `Cancel`,
       custom_id: "deleteevent"
     };
@@ -314,7 +314,7 @@ async function handleMaybeButton(interaction) {
             color: Colours.RED,
         };
     
-        await interaction.followUp({ embeds: [embed], ephemeral: true });
+        await interaction.followUp({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
         console.log(`${interaction.user.globalName} couldn't find the event embed`);
         return; // Exit early to prevent further processing
     }
@@ -329,39 +329,39 @@ async function handleMaybeButton(interaction) {
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👍",
+      emoji: { name: "👍" },
       label: "Attending",
       custom_id: "attender"
     };
-
+    
     const denyButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👎",
+      emoji: { name: "👎" },
       label: "Not Attending",
       custom_id: "neglector"
     };
-
+    
     const maybeButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "❓",
+      emoji: { name: "❓" },
       label: "Maybe Attending",
       custom_id: "maybe"
     };
-
+    
     const editButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "✏️",
+      emoji: { name: "✏️" },
       label: "Edit",
       custom_id: "edit"
     };
-
+    
     const deleteButton = {
       type: 2,
       style: ButtonStyle.Danger,
-      emoji: "🗑️",
+      emoji: { name: "🗑️" },
       label: `Cancel`,
       custom_id: "deleteevent"
     };
@@ -424,7 +424,7 @@ async function handleEditButton(interaction) {
         color: Colours.RED, // Green color for success
       };
       
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       return;
     }
 
@@ -439,7 +439,7 @@ async function handleEditButton(interaction) {
         color: Colours.RED,
       };
     
-      await interaction.followUp({ embeds: [embed], ephemeral: true });
+      await interaction.followUp({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       console.log(`${interaction.user.globalName} couldn't find the event embed`);
       return; // Exit early to prevent further processing
     }
@@ -458,7 +458,7 @@ async function handleEditButton(interaction) {
       required: true,
       maxLength: 35,
       minLength: 4,
-      placeholder: "Persistant Server Gaming",
+      placeholder: "Star Citizen",
     });
 
     const description = new TextInputBuilder({
@@ -468,7 +468,7 @@ async function handleEditButton(interaction) {
       required: false,
       maxLength: 4000,
       minLength: 100,
-      placeholder: "Let's hop on the persistant server!",
+      placeholder: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec sed posuere massa, vel luctus nullam.",
     });
 
     //--- Components
@@ -506,7 +506,7 @@ async function handleEventEdited(interaction) {
         color: Colours.RED,
       };
     
-      await interaction.followUp({ embeds: [embed], ephemeral: true });
+      await interaction.followUp({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       console.log(`${interaction.user.globalName} couldn't find the event embed`);
       return; // Exit early to prevent further processing
     }
@@ -579,14 +579,14 @@ async function handleDeleteEventButton(interaction) {
     const { guild, attendancechannelid } = require("./config");
 
     //-- Clone the first embed for modification
-    if (!hasRole(member, "Company HQ")) {
+    if (!hasRole(member, "TF Command")) {
       const embed = {
         title: "Error",
         description: "You don't have the necessory permissions to `delete` events.",
         color: Colours.RED, // Green color for success
       };
       
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       return;
     }
 
@@ -640,7 +640,7 @@ async function handleEventCreation(interaction) {
         color: Colours.RED, // Green color for success
       };
       
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       return;
     }
   
@@ -657,7 +657,7 @@ async function handleEventCreation(interaction) {
         color: Colours.RED,
       };
       
-      await interaction.reply({ embeds: [embed], ephemeral: true });
+      await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
       return
     };
 
@@ -671,7 +671,7 @@ async function handleEventCreation(interaction) {
       description: `Take a look at it in the <#${attendancechannelid}>.`,
       color: Colours.GREY,
     };
-    await interaction.reply({ embeds: [embed], ephemeral: true });
+    await interaction.reply({ embeds: [embed], flags: [MessageFlags.Ephemeral] });
 
     //--- Post in the event channel
     const members = await discordGuild.members.fetch();
@@ -701,39 +701,39 @@ async function handleEventCreation(interaction) {
     const acceptButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👍",
+      emoji: { name: "👍" },
       label: "Attending",
       custom_id: "attender"
     };
-
+    
     const denyButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "👎",
+      emoji: { name: "👎" },
       label: "Not Attending",
       custom_id: "neglector"
     };
-
+    
     const maybeButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "❓",
+      emoji: { name: "❓" },
       label: "Maybe Attending",
       custom_id: "maybe"
     };
-
+    
     const editButton = {
       type: 2,
       style: ButtonStyle.Primary,
-      emoji: "✏️",
+      emoji: { name: "✏️" },
       label: "Edit",
       custom_id: "edit"
     };
-
+    
     const deleteButton = {
       type: 2,
       style: ButtonStyle.Danger,
-      emoji: "🗑️",
+      emoji: { name: "🗑️" },
       label: `Cancel`,
       custom_id: "deleteevent"
     };
@@ -747,7 +747,7 @@ async function handleEventCreation(interaction) {
     var pingcontent = "";
     if (pingEveryone.toLowerCase() === "yes") {
       if (roleidtopingValue === "") {
-        pingcontent = "@everyone"
+        pingcontent = "@here"
       } else {
         pingcontent = `<@&${roleidtopingValue}>`
       }

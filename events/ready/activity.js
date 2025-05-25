@@ -5,7 +5,7 @@
  */
 
 const { ActivityType, inlineCode } = require('discord.js');
-const { guild, attendancechannelid } = require('../../config');
+const { guild, attendancechannelid, scheduledEvents } = require('../../config');
 
 module.exports = async (client) => {
     client.user.setActivity(`For New Events`, { type: ActivityType.Watching });
